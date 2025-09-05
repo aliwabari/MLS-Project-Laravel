@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users','id')->cascadeOnDelete();
             $table->foreignId('option_id')->constrained('options','id')->cascadeOnDelete();
             $table->text('answer')->nullable();
-
         });
     }
 

@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('questions' , function(Blueprint $table){
-            $table->id();
+        Schema::create('submitions' , function ( Blueprint $table){
+            $table->id() ;
+            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
             $table->foreignId('exam_id')->constrained('exams', 'id')->cascadeOnDelete();
-            $table->text('question');
-            $table->enum('type', ['Mcq' , 'true_false' , 'short_answer' , 'essay']);
-            $table->double('point');
+            $table->string('status');
+            $table->double('score');
+            $table->dateTime('submitted_at');
+            $table->timestamp('started_at');
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.
@@ -27,6 +29,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('submitions');
     }
 };
